@@ -23,4 +23,15 @@ print("resultado com dois:")
 print(media_adaptada_dois(idade_a,idade_b))
 
 print("resultado com tres:")
-print(media_adaptada_tres(idade_a,idade_b,idade_c))
+resultado = media_adaptada_tres(idade_a,idade_b,idade_c)
+
+
+if (resultado < 20):
+    print("média menor que 20 anos sendo ", resultado)
+elif (resultado > 20):
+    print("média maior que 20 anos sendo ", resultado)
+else:
+    print("média é igual a 20 anos sendo ", resultado)
+
+
+print("FINAL")
