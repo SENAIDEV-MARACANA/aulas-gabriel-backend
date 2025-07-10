@@ -20,41 +20,55 @@ def calcular_desconto(idade, situacao, conhecimento, comunidade):
 
     return desconto
 
-
+def interpretar_resposta_sim_nao(resposta):
+    resposta = resposta.strip().lower()
+    if resposta in ["sim", "s"]:
+        return "sim"
+    elif resposta in ["não", "nao", "n"]:
+        return "não"
+    else:
+        return None
+    
 def main():
     print("=== Sistema de Verificação de Desconto em Cursos de TI ===")
-    
-    try:
-        idade = int(input("Qual é a sua idade ? "))
 
-        if idade < 18:
-            print("Inelegível a desconto(menor de idade)")
-            return
-
-        while True:
-            situacao = input("Situação profissional ('estudante', 'desempregado', 'empregado'): ").strip().lower()
-            if situacao in ["estudante", "desempregado", "empregado"]:
+    while True:
+        idade_input = input("Qual é a sua idade ? ").strip()
+        try:
+            idade = int(idade_input)
+            if 0 <= idade <= 100:
                 break
-            print("Erro: Situação inválida. Escolha entre: estudante, desempregado, empregado.")
+            else:
+                print("Erro: Idade fora do intervalo permitido.")
+        except ValueError:
+            print("Erro: Digite apenas números inteiros.")
 
-        while True:
-            conhecimento = input("Possui conhecimento prévio em TI? ('sim' ou 'não'): ").strip().lower()
-            if conhecimento in ["sim", "não"]:
-                break
-            print("Erro: Responda com 'sim' ou 'não'.")
+    if idade < 18:
+        print("Inelegível a desconto(menor de idade)")
+        return
 
-        while True:
-            comunidade = input("Participa ativamente da comunidade de TI? ('sim' ou 'não'): ").strip().lower()
-            if comunidade in ["sim", "não"]:
-                break
-            print("Erro: Responda com 'sim' ou 'não'.")
+    while True:
+        situacao = input("Situação profissional ('estudante', 'desempregado', 'empregado'): ").strip().lower()
+        if situacao in ["estudante", "desempregado", "empregado"]:
+            break
+        print("Erro: Situação inválida. Escolha entre: estudante, desempregado, empregado.")
 
-        desconto_total = calcular_desconto(idade, situacao, conhecimento, comunidade)
-        print(f"Seu desconto é de {desconto_total}%")
+    while True:
+        conhecimento_input = input("Possui conhecimento prévio em TI? ('sim' ou 'não'): ").strip().lower()
+        conhecimento = interpretar_resposta_sim_nao(conhecimento_input)
+        if conhecimento:
+            break
+        print("Erro: Responda com 'sim' ou 'não'.")
 
-    except ValueError:
-        print("Erro: Idade deve ser um número inteiro.")
+    while True:
+        comunidade_input = input("Participa ativamente da comunidade de TI? ('sim' ou 'não'): ").strip().lower()
+        comunidade = interpretar_resposta_sim_nao(comunidade_input)
+        if comunidade:
+            break
+        print("Erro: Responda com 'sim' ou 'não'.")
 
+    desconto_total = calcular_desconto(idade, situacao, conhecimento, comunidade)
+    print(f"Seu desconto é de: {desconto_total}%")
 
 if __name__ == "__main__":
     main()
