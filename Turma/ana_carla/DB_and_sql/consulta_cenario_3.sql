@@ -7,7 +7,7 @@ WHERE id = 15;
 
 UPDATE paciente
 SET telefone = '(21) 99999-8888'
-WHERE if = 1001;
+WHERE id = 1001;
 
 -- o paciente quer apagar os dados na clinica só que tem consulta registrada
 
