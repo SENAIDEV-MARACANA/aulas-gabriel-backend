@@ -99,7 +99,4 @@ for i in zoo:
     i.apresentar()
     i.falar()
     
-     
-
-
-       
+           
